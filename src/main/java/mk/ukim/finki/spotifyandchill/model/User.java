@@ -16,6 +16,7 @@ public class User {
     private String surname;
     private String email;
     private Date birthDate;
+    private Artist topArtist;
 
     public String getUsername() {
         return username;
