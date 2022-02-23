@@ -17,7 +17,7 @@ public class SpotifyConnectionConfig {
     @Value("96faf0542a934748ab800dae8f474e70") // TODO add relevant fields
     private String clientId;
 
-    @Value("${spotify.client-secret}") // TODO add relevant fields
+    @Value("1961f39ea9a847c7aaf7729d5b07744c") // TODO add relevant fields
     private String clientSecret;
 
     @Setter(AccessLevel.NONE)
