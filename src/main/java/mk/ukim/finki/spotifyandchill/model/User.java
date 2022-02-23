@@ -13,6 +13,8 @@ import java.util.List;
 public class User {
     private String username;
     private String password;
+    private String bio;
+    private String gender;
     private String name;
     private String surname;
     private String email;
