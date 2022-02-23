@@ -2,7 +2,7 @@ package mk.ukim.finki.spotifyandchill.web.rest;
 
 
 import mk.ukim.finki.spotifyandchill.model.SpotifyUserAuthorizationCode;
-import mk.ukim.finki.spotifyandchill.service.AuthorizationService;
+import mk.ukim.finki.spotifyandchill.service.*;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -20,6 +20,9 @@ public class AuthController {
     SpotifyUserAuthorizationCode spotifyUserAuthorizationCode = new SpotifyUserAuthorizationCode();
 
     String authCode;
+
+    @Autowired
+    PlayerService playerService;
 
     @GetMapping("/authorize")
     public String authorize() {
@@ -52,9 +55,19 @@ public class AuthController {
         return "<h1>AccessGranted</h1> <br/>  state:" + state + " <br/>  code:" + code + "<br/> <br/> getToken <a href=\"http://localhost:8080/index/token\">Get Token to interact on user's behalf</a>\n "; // TODO hide code display
     }
 
-    @GetMapping("/{name}")
-    public String hello(Model model, @PathVariable String name) {
-        checkRequestParameterNotNull("username", name);
-        return "Hello World! " + name;
+//    @GetMapping("/{name}")
+//    public String hello(Model model, @PathVariable String name) {
+//        checkRequestParameterNotNull("username", name);
+//        return "Hello World! " + name;
+//    }
+
+    @GetMapping("/recentlyPlayed")
+    public void getRecentPlayedTracks() {
+        JSONObject response = new JSONObject();
+        if (spotifyUserAuthorizationCode.getAccessToken() == null || spotifyUserAuthorizationCode.getAccessToken().isEmpty()) {
+            response.put("Error", "UserAccessToken not fetched yet");
+        }
+        JSONObject result = playerService.getRecentlyPlayed(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
+        System.out.println(result);
     }
 }
