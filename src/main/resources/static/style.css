@@ -23,16 +23,65 @@
 
 }
 #welcomePageBackground{
+<<<<<<< HEAD
     background: url("Vector.svg") no-repeat center center fixed;
+    background-size: contain;
+
+    background-color: #191414;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    pointer-events: none;
+}
+
+#login{
+    pointer-events: auto;
+    top: 43%;
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 100%;
+    color: white;
+}
+
+
+#welcomePageBackground:hover{
+    /*transition: all 5s ease-in-out;*/
+    /*background-size: 80%;*/
+    animation: welcomeLogo  2s linear infinite alternate;
+}
+
+@keyframes welcomeLogo {
+    from{
+        background-size: 52%;
+    }
+    to{
+        background-size: 60%;
+    }
+}
+
+
+
+
+#login-img{
+    width: 400px;
+}
+#login-with-text{
+    display: block !important;
+}
+
+/*#logo-text{*/
+/*    //top: -7px!important;*/
+/*    position: relative!important;*/
+/*}*/
+=======
+    background: url("logospotifychill-01.svg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
-    height: 500px;
-    width: 500px;
-    background-color: #191414;
-    color: #fff;
-    text-align: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    background-color: black;
 }
+>>>>>>> 3ed7df4fc902f8edb5edaa6cc1a65e792b267652

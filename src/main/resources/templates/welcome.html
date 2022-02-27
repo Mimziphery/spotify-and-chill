@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8" />
     <title></title>
@@ -13,7 +13,16 @@
 
 <body id="welcomePageBackground">
 <header th:replace="fragments/navbar.html"/>
-
+<div class="d-flex align-items-center justify-content-center">
+<a id="login" class="position-absolute" href="#" >
+    <div class="row" id="login-with-text">
+        <span id="login-text">Login with</span>
+    </div>
+    <div class="row">
+        <img id="login-img" class="row" th:src="@{/Spotify_Logo_RGB_White.png}"   alt="...">
+    </div>
+</a>
+</div>
 <!--<p>-->
 <!--    <span th:text="${hello}">Hello!</span>-->
 <!--</p>-->
