@@ -23,11 +23,41 @@
 
 }
 #welcomePageBackground{
-    background: url("logospotifychill-01.svg") no-repeat center center fixed;
+    background: url("OurLogoBackground.svg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 
+
     background-color: black;
+    pointer-events: none;
+}
+#LoginWithText {
+    position: fixed;
+    text-align: center;
+    font-family: MuseoModerno, serif;
+    font-size: 40px;
+    color: white;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+}
+#welcomePageBackground:hover{
+/transition: all 5s ease-in-out;/
+/background-size: 80%;/
+animation: welcomeLogo  2s linear infinite alternate;
+}
+
+@keyframes welcomeLogo {
+    from{
+        background-size: 52%;
+    }
+    to{
+        background-size: 60%;
+    }
+}
+#login{
+    pointer-events: auto;
 }
