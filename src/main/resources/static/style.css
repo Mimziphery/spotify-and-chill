@@ -23,7 +23,6 @@
 
 }
 #welcomePageBackground{
-<<<<<<< HEAD
     background: url("Vector.svg") no-repeat center center fixed;
     background-size: contain;
 
@@ -75,13 +74,3 @@
 /*    //top: -7px!important;*/
 /*    position: relative!important;*/
 /*}*/
-=======
-    background: url("logospotifychill-01.svg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    background-color: black;
-}
->>>>>>> 3ed7df4fc902f8edb5edaa6cc1a65e792b267652
