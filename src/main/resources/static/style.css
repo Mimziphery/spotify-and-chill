@@ -3,6 +3,28 @@
     src: url("MuseoModerno-VariableFont_wght.ttf");
 }
 
+#BasicBackground{
+    background: #191414;
+}
+
+#headers{
+    position: absolute;
+    width: 289px;
+    height: 64px;
+    left: 720px;
+    top: 142px;
+
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 100%;
+    /* identical to box height, or 64px */
+
+    text-align: center;
+    text-transform: capitalize;
+}
+
 #logo{
     font-family: MuseoModerno, serif;
     font-style: normal;
