@@ -14,11 +14,11 @@
 <body id="welcomePageBackground">
 <header th:replace="fragments/navbar.html"/>
 <div class="d-flex align-items-center justify-content-center">
-<a id="login" class="position-absolute" href="#" >
+<a id="login" class="position-absolute" th:href="@{https://accounts.spotify.com/authorize/?scope=user-read-private playlist-read-private playlist-modify-public user-library-read user-read-recently-played streaming app-remote-control&response_type=code&redirect_uri=http://localhost:8080/index/responseFromSpotify&client_id=96faf0542a934748ab800dae8f474e70}" >
     <div class="row" id="login-with-text">
         <span id="login-text">Login</span>
         <br>
-        <span style="font-size: 32px">with</span>
+        <span style="font-size: 22px">with</span>
     </div>
     <div class="row">
         <img id="login-img" class="row" th:src="@{/Spotify_Logo_RGB_White.png}"   alt="...">
