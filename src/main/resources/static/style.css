@@ -5,12 +5,18 @@
 * {
     box-sizing: border-box;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
     .AdminProfileDiv {
         width: 100% !important;
     }
     .BioLabel{
         width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 500px){
+    #logo-text{
+        display: none;
     }
 }
 .BioLabel{
@@ -29,7 +35,13 @@
 
 .icons {
     padding-top: 5%;
-    width: 350px;
+    width: 267px;
+    height: 100px;
+    margin: auto;
+}
+.iconsMarko {
+    padding-top: 5%;
+    width: 130px;
     height: 100px;
     margin: auto;
 }
@@ -68,12 +80,31 @@
 
 .RoundedImage{
     border-radius: 50%;
+    outline: solid rgba(28, 179, 152, 0.25) 2px;
     width: 270px;
     height: 270px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    position: center;
+    position: relative;
+    z-index: 0;
+}
+.RoundedImage:hover{
+    animation: aboutIconBorderAnimation ease-out forwards;
+    animation-duration: 6s;
+    z-index: 1;
+}
+
+@keyframes aboutIconBorderAnimation {
+    from{
+        outline-offset: 1px;
+        outline-width: 1px;
+    }
+    to{
+        outline-offset: 2000px;
+        outline-width: 720px;
+    }
+
 }
 
 #headers{
@@ -156,6 +187,7 @@
         background-size: 120%;
     }
 }
+
 
 
 
