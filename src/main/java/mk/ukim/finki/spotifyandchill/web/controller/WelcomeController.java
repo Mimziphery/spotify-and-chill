@@ -20,4 +20,7 @@ public class WelcomeController {
     public String getAboutUsPage(){
         return "aboutUs";
     }
+
+    @GetMapping("/username")
+    public String getUsernamePage(){return "usernamePage"; }
 }

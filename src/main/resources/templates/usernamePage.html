@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Username</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body id="BasicBackground">
+<header th:replace="fragments/navbar2.html"/>
+<div d-flex justify-content-around bd-highlight>
+    <div class="MainPage">
+        <div id="UsernamePicture"></div>
+        <h2 id="UsernameText">Username</h2>
+        <h3 id="FollowersText">Followers, Following</h3>
+        <div class="icons">
+            <img th:src="@{/facebook-logo.png}" class="facebooklogo"/>
+            <img th:src="@{/instagram-logo.png}" class="icon"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
