@@ -2,20 +2,119 @@
     font-family: MuseoModerno;
     src: url("MuseoModerno-VariableFont_wght.ttf");
 }
+* {
+    box-sizing: border-box;
+}
+@media screen and (max-width: 1000px) {
+    .AdminProfileDiv {
+        width: 100% !important;
+    }
+    .BioLabel{
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 500px){
+    #logo-text{
+        display: none;
+    }
+}
+.BioLabel{
+    width: 400px;
+    height: 100px;
+    background: white;
+    font-size: 32px;
+    font-family: MuseoModerno, serif;
+    border: #1cb398 5px solid;
+    margin: auto;
+}
 
 #BasicBackground{
     background: #191414;
 }
 
-#headers{
-    position: absolute;
-    width: 289px;
-    height: 64px;
-    left: 720px;
-    top: 142px;
-
+.icons {
+    padding-top: 5%;
+    width: 267px;
+    height: 100px;
+    margin: auto;
+}
+.iconsMarko {
+    padding-top: 5%;
+    width: 130px;
+    height: 100px;
+    margin: auto;
+}
+.icon{
+    width: 60px;
+    height: 60px;
+    padding: 2%;
+}
+.facebooklogo{
+    width: 70px;
+    height: 70px;
+    padding: 2%;
+}
+.AdminProfileDiv{
+    padding-top: 5%;
+    width: 33.33%;
+    height: 800px;
+    background: #191414;
+    float: left;
+}
+#ProfilesRow:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.UsernameTextHeader{
+    padding-top: 3%;
     font-family: MuseoModerno, serif;
     font-style: normal;
+    color: #1cb398;
+    font-weight: 500;
+    font-size: 48px;
+    text-align: center;
+
+}
+
+.RoundedImage{
+    border-radius: 50%;
+    outline: solid rgba(28, 179, 152, 0.25) 2px;
+    width: 270px;
+    height: 270px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 0;
+}
+.RoundedImage:hover{
+    animation: aboutIconBorderAnimation ease-out forwards;
+    animation-duration: 6s;
+    z-index: 1;
+}
+
+@keyframes aboutIconBorderAnimation {
+    from{
+        outline-offset: 1px;
+        outline-width: 1px;
+    }
+    to{
+        outline-offset: 2000px;
+        outline-width: 720px;
+    }
+
+}
+
+#headers{
+
+    width: 100%;
+    position: relative;
+    padding-top: 3%;
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    color: #1cb398;
     font-weight: 500;
     font-size: 64px;
     line-height: 100%;
@@ -88,11 +187,10 @@
         background-size: 120%;
     }
 }
-
 #login-img{
     width: 200px;
 }
-#login-with-text{
+#login-with-text {
     display: block !important;
 }
 

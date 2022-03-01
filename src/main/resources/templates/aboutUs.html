@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About Us</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body id="BasicBackground">
 <header th:replace="fragments/navbar.html"/>
 <h1 id="headers">About Us</h1>
-
+<div d-flex justify-content-around bd-highlight>
+<div class="AdminProfileDiv">
+    <div class="ImageProfiles">
+        <img th:src="@{/Mimz1.jpeg}" class="RoundedImage">
+        <h2 class="UsernameTextHeader">Mimz</h2>
+        <p class="BioLabel">Smisli si bio</p>
+        <div class="icons">
+            <a th:href="@{https://open.spotify.com/user/6uyn8ljlhyn01knaq3a1mtvdy?si=05c242b25f7343e0}">
+                <img th:src="Spotify_Icon_RGB_White.png" class="icon">
+            </a>
+            <a th:href="@{https://www.facebook.com/mimozamickoska}">
+                <img th:src="facebook-logo.png" class="facebooklogo">
+            </a>
+            <a th:href="@{https://www.instagram.com/mimoza_mickoska/}">
+                <img th:src="instagram-logo.png" class="icon">
+            </a>
+            <img th:src="linkedin-logo.png" class="icon">
+        </div>
+    </div>
+</div>
+<div class="AdminProfileDiv">
+    <div class="ImageProfiles">
+        <img th:src="@{/Marko1.png}" class="RoundedImage">
+        <h2 class="UsernameTextHeader">Marko</h2>
+        <p class="BioLabel">Smisli si bio</p>
+        <div class="iconsMarko">
+            <a th:href="@{https://open.spotify.com/user/77d7qf5fg2av5zhvrcbs9f0nv?si=720cf738398b4828}">
+            <img th:src="Spotify_Icon_RGB_White.png" class="icon">
+            </a>
+            <a th:href="@{https://www.linkedin.com/in/marko-krajceski-493716183}">
+            <img th:src="linkedin-logo.png" class="icon">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="AdminProfileDiv">
+    <div class="ImageProfiles">
+        <img th:src="@{/Jovana1.png}" class="RoundedImage">
+        <h2 class="UsernameTextHeader">Jovana</h2>
+        <p class="BioLabel">Smisli si bio</p>
+        <div class="icons">
+            <img th:src="Spotify_Icon_RGB_White.png" class="icon">
+            <a th:href="@{https://www.facebook.com/jovana.krstevska.5}">
+            <img th:src="facebook-logo.png" class="facebooklogo">
+            </a>
+            <a th:href="@{https://www.instagram.com/jovana.krstevskaa/}">
+            <img th:src="instagram-logo.png" class="icon">
+            </a>
+            <img th:src="linkedin-logo.png" class="icon">
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>
