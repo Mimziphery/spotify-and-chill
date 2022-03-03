@@ -80,7 +80,7 @@
 
 .RoundedImage{
     border-radius: 50%;
-    outline: solid rgba(28, 179, 152, 0.25) 2px;
+    outline: solid rgba(248,3,40, 0.25) 0px;
     width: 270px;
     height: 270px;
     display: block;
@@ -148,12 +148,12 @@
     background: url("logospotifychill-01.svg") no-repeat center center fixed;
     background-size: cover;
 
-    background-color: #191414;
     color: #fff;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
     pointer-events: none;
 }
+
 
 #login{
     pointer-events: auto;
@@ -178,6 +178,7 @@
     /*background-size: 80%;*/
     animation: welcomeLogo  2s linear infinite alternate;
 }
+
 
 @keyframes welcomeLogo {
     from{
