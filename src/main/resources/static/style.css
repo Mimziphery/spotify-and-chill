@@ -145,21 +145,30 @@
 }
 #welcomePageBackground{
     overflow: auto;
-    background: url("logospotifychill-01.svg") no-repeat center center fixed;
+    /*background: url("logospotifychill-01.svg") no-repeat center center fixed;*/
     background-size: cover;
+    background-color: #191414;
 
     color: #fff;
     text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
-    pointer-events: none;
 }
 
+#background{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+    outline: solid rgba(248,3,40, 0.25) 0px;
+    border-radius: 50%;
 
+}
 #login{
-    pointer-events: auto;
-
     position: fixed;
-    top: 55%;
+    top: 50%;
     left: 50%;
     font-family: MuseoModerno, serif;
     font-style: normal;
@@ -169,15 +178,23 @@
     color: white;
 
     transform: translate(-50%, -50%);
-
 }
 
+#login:hover ~ #background{
+
+    animation: welcomeLogoColorChange  2s ease normal;
+}
+#login:hover{
+    font-size: 33px;!important;
+}
 
 #welcomePageBackground:hover{
     /*transition: all 5s ease-in-out;*/
     /*background-size: 80%;*/
-    animation: welcomeLogo  2s linear infinite alternate;
+    /*animation: welcomeLogo  2s linear infinite alternate;*/
+    /*: welcomeLogoColorChange  2s linear infinite alternate;*/
 }
+
 
 
 @keyframes welcomeLogo {
@@ -189,6 +206,20 @@
     }
 }
 
+@keyframes welcomeLogoColorChange {
+    from{
+        /*filter:  hue-rotate(0deg);*/
+        outline-offset: 1px;
+        outline-width: 1px;
+
+
+    }
+    to{
+        /*filter: hue-rotate(190deg);*/
+        outline-offset: 1000px;
+        outline-width: 720px;
+    }
+}
 
 
 
