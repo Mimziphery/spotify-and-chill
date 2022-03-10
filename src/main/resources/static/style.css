@@ -6,6 +6,16 @@
     box-sizing: border-box;
 }
 
+#AdminProfileDivDesign{
+
+    padding-top: 5%;
+    width: 100%;
+    height: 550px;
+    background: #191414;
+    margin: auto;
+
+}
+
 
 /* Tooltip text */
 #logo .tooltiptext {
@@ -62,6 +72,12 @@
     height: 100px;
     margin: auto;
 }
+#dekiicon{
+    padding-top: 2%;
+    width: 215px;
+    height: 100px;
+    margin: auto;
+}
 .iconsMarko {
     padding-top: 5%;
     width: 130px;
@@ -81,7 +97,7 @@
 .AdminProfileDiv{
     padding-top: 5%;
     width: 33.33%;
-    height: 800px;
+    height: 550px;
     background: #191414;
     float: left;
 }
@@ -91,15 +107,16 @@
     clear: both;
 }
 .UsernameTextHeader{
-    padding-top: 3%;
     font-family: MuseoModerno, serif;
     font-style: normal;
     color: #1cb398;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 38px;
     text-align: center;
 
 }
+
+
 
 .RoundedImage{
     border-radius: 50%;
@@ -140,6 +157,41 @@
     color: #1cb398;
     font-weight: 500;
     font-size: 64px;
+    line-height: 100%;
+    /* identical to box height, or 64px */
+
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.DevHeader{
+
+    width: 100%;
+    position: relative;
+    padding-top: 3%;
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    color: #F80328;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 100%;
+    /* identical to box height, or 64px */
+
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.DesignHeader{
+
+    z-index: -1;
+    width: 100%;
+    position: relative;
+    padding: 5%;
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    color: #F80328;
+    font-weight: 500;
+    font-size: 48px;
     line-height: 100%;
     /* identical to box height, or 64px */
 
