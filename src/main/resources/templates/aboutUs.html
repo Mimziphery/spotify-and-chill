@@ -6,7 +6,15 @@
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
 <body id="BasicBackground">
-<header th:replace="fragments/navbar.html"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
+    <div class="container-fluid" >
+        <a id="logo" class="navbar-brand mx-auto"  href="/">
+            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
+            <span id="logo-text">Spotify & Chill</span>
+        </a>
+    </div>
+</nav>
 <h1 id="headers">About Us</h1>
 <div d-flex justify-content-around bd-highlight>
 <div class="AdminProfileDiv">
