@@ -5,7 +5,7 @@
     <title>Username</title>
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
-<body id="BasicBackground">
+<body id="BasicBackground"  style="background-color: black">
 <header th:replace="fragments/navbar2.html"/>
 <div d-flex justify-content-around bd-highlight>
     <div class="MainPage">
@@ -15,6 +15,26 @@
         <div class="iconsProfilePage">
             <img th:src="@{/FacebookLogoBlue.png}" class="facebooklogoPage"/>
             <img th:src="@{/InstagramLogoBlue.png}" class="iconProfilePage"/>
+        </div>
+        <div class="TheUserNavbar">
+            <div class="UserNavbar">Artists</div>
+            <div class="UserNavbar">Albums</div>
+            <div class="UserNavbar">PLaylists</div>
+            <div class="UserNavbar">Matches</div>
+        </div>
+        <div class="UserTop5Artists">
+            <div class="TopArtist"></div>
+            <div class="TopArtist"></div>
+            <div class="TopArtist"></div>
+            <div class="TopArtist"></div>
+            <div class="TopArtist"></div>
+        </div>
+        <div class="ArtistsName">
+            <h2 class="NameArtist">Artist1</h2>
+            <h2 class="NameArtist">Artist2</h2>
+            <h2 class="NameArtist">Artist3</h2>
+            <h2 class="NameArtist">Artist4</h2>
+            <h2 class="NameArtist">Artist5</h2>
         </div>
     </div>
 </div>
