@@ -20,4 +20,9 @@ public class WelcomeController {
     public String getAboutUsPage(){
         return "aboutUs";
     }
+
+    @GetMapping("/errorPage")
+    public String getErrorPage(){
+        return "errorPage";
+    }
 }
