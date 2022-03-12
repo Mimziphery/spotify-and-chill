@@ -40,5 +40,8 @@ public class SpotifyConnectionConfig {
     private String playerUrlRecentlyPlayed = "https://api.spotify.com/v1/me/player/recently-played";
 
     @Setter(AccessLevel.NONE)
+    private String currentUser = "https://api.spotify.com/v1/me";
+
+    @Setter(AccessLevel.NONE)
     private String albumUrl = "https://api.spotify.com/v1/albums/";
 }

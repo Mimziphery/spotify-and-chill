@@ -39,6 +39,25 @@ public class PlayerService {
      *
      * @return
      */
+    public JSONObject getCurrentUser(String token) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getCurrentUser();
+
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getCurrentUser", createIndexUrl, GET,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+
+        // check response
+        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getCurrentUser");
+
+        return responseEntity.getBody();
+    }
+
     public JSONObject getRecentlyPlayed(String token) {
         // prepare create index url
         String createIndexUrl = spotifyConnectionConfig.getPlayerUrlRecentlyPlayed();
