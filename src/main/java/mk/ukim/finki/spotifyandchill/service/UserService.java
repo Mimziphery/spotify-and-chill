@@ -11,4 +11,5 @@ public interface UserService {
     List<User> listAll();
     //List<User> topArtist(Artist artist);
     void save(User user);
+    User getById(String id);
 }

@@ -4,6 +4,7 @@ package mk.ukim.finki.spotifyandchill.web.rest;
 import mk.ukim.finki.spotifyandchill.model.*;
 import mk.ukim.finki.spotifyandchill.service.*;
 import mk.ukim.finki.spotifyandchill.repository.*;
+import mk.ukim.finki.spotifyandchill.web.controller.*;
 import org.json.simple.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/index/")
+@RequestMapping("/fku")
 public class AuthController {
 
     @Autowired
@@ -28,37 +29,54 @@ public class AuthController {
     PlayerService playerService;
 
 
-
-
     @GetMapping("/authorize")
     public String authorize() {
         return authorizationService.grantApplicationAccess();
     }
 
-    @GetMapping("/token")
-    public JSONObject getToken() {
+//    @GetMapping("/token")
+//    public String getToken() {
+//        JSONObject response = new JSONObject();
+//        if (spotifyUserAuthorizationCode.getCode() == null || spotifyUserAuthorizationCode.getCode().isEmpty()) {
+//            return "redirect:/error";
+//        }
+//        JSONObject result = authorizationService.getToken(spotifyUserAuthorizationCode.getCode());
+//        spotifyUserAuthorizationCode.setAccessToken((String) result.get("access_token"));
+//        spotifyUserAuthorizationCode.setRefreshToken((String) result.get("refresh_token"));
+//        spotifyUserAuthorizationCode.setTokenType((String) result.get("token_type"));
+//        //System.out.println("Finished");
+//        //result.put("goToRecentlyPlayedLink", "http://localhost:8080/index/recentlyPlayed");
+//        return "redirect:/profile";
+//    }
+
+    @GetMapping("/profile")
+    public String getProfile() {
+        return "profile";
+    }
+
+
+    @RequestMapping("/responseFromSpotify")
+    public void authResponse(@RequestParam(required = false) String code, @RequestParam(required = false) String state, @RequestParam(required = false) String error) {
+        if (error != null) {
+            //return "<h1>AccessGranted</h1> <br/>  state:" + state + "  error: " + error;
+        }
+        spotifyUserAuthorizationCode.setCode(code);
+        spotifyUserAuthorizationCode.setUsername("user-" + Thread.currentThread().getName());
+
+
         JSONObject response = new JSONObject();
         if (spotifyUserAuthorizationCode.getCode() == null || spotifyUserAuthorizationCode.getCode().isEmpty()) {
-            response.put("Error", "Application not authorized yet on user's behalf to access his data");
-            return response;
+            //return "redirect:/error";
         }
         JSONObject result = authorizationService.getToken(spotifyUserAuthorizationCode.getCode());
         spotifyUserAuthorizationCode.setAccessToken((String) result.get("access_token"));
         spotifyUserAuthorizationCode.setRefreshToken((String) result.get("refresh_token"));
         spotifyUserAuthorizationCode.setTokenType((String) result.get("token_type"));
-        result.put("goToRecentlyPlayedLink", "http://localhost:8080/index/recentlyPlayed");
-        return result;
-    }
 
-
-    @RequestMapping("/responseFromSpotify")
-    public String authResponse(@RequestParam(required = false) String code, @RequestParam(required = false) String state, @RequestParam(required = false) String error) {
-        if (error != null) {
-            return "<h1>AccessGranted</h1> <br/>  state:" + state + "  error: " + error;
-        }
-        spotifyUserAuthorizationCode.setCode(code);
-        spotifyUserAuthorizationCode.setUsername("user-" + Thread.currentThread().getName());
-        return "<h1>AccessGranted</h1> <br/>  state:" + state + " <br/>  code:" + code + "<br/> <br/> getToken <a href=\"http://localhost:8080/index/token\">Get Token to interact on user's behalf</a>\n "; // TODO hide code display
+        //System.out.println("Finished");
+        //result.put("goToRecentlyPlayedLink", "http://localhost:8080/index/recentlyPlayed");
+        //return "redirect:/profile";
+        //return "<h1>AccessGranted</h1> <br/>  state:" + state + " <br/>  code:" + code + "<br/> <br/> getToken <a href=\"http://localhost:8080/index/token\">Get Token to interact on user's behalf</a>\n "; // TODO hide code display
     }
 
 //    @GetMapping("/{name}")

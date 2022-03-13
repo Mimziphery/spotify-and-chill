@@ -29,5 +29,12 @@ public class UserServiceImplementation implements UserService {
     public void save(User user) {
         this.userRepository.save(user);
     }
+
+    @Override
+    public User getById(String id) {
+        return userRepository.getById(id);
+    }
+
+
 }
     
