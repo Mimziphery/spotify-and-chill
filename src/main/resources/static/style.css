@@ -312,13 +312,48 @@
 }
 
 
-
-
 #login-img{
     width: 200px;
 }
 #login-with-text {
     display: block !important;
+}
+
+
+.profileButtons{
+    position: absolute;
+    width: 1001px;
+    height: 57px;
+    left: 363px;
+    top: 790px;
+
+    font-family: 'MuseoModerno';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 100%;
+    /* or 36px */
+
+    text-align: center;
+    text-transform: capitalize;
+
+    color: #FFFFFF;
+
+}
+
+#profileName{
+    font-family: 'MuseoModerno';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 100%;
+    /* or 48px */
+
+    text-align: center;
+    text-transform: capitalize;
+
+    color: #1CB398;
+
 }
 
 /*#logo-text{*/

@@ -76,4 +76,23 @@ public class PlayerService {
 
         return responseEntity.getBody();
     }
+
+    public JSONObject getTopArtists(String token) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getTopArtists();
+
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopArtists", createIndexUrl, GET,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+
+        // check response
+        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getTopArtists");
+
+        return responseEntity.getBody();
+    }
 }

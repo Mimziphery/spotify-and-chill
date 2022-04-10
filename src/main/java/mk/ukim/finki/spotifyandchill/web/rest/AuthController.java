@@ -85,31 +85,31 @@ public class AuthController {
 //        return "Hello World! " + name;
 //    }
 
-    @GetMapping("/recentlyPlayed")
-    public void getRecentPlayedTracks() {
-        JSONObject response = new JSONObject();
-        if (spotifyUserAuthorizationCode.getAccessToken() == null || spotifyUserAuthorizationCode.getAccessToken().isEmpty()) {
-            response.put("Error", "UserAccessToken not fetched yet");
-        }
-        System.out.println(response);
-        JSONObject result = playerService.getRecentlyPlayed(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
-        JSONObject currentUser = playerService.getCurrentUser(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
-        String id = currentUser.get("id").toString();
-        System.out.println(id);
-        ArrayList<LinkedHashMap> arrayList = (ArrayList<LinkedHashMap>) currentUser.get("images");;
-        String imageUrl = arrayList.get(0).get("url").toString();
-        System.out.println(imageUrl);
-        LinkedHashMap externalUrlsHash = (LinkedHashMap) currentUser.get("external_urls");
-        String spotifyUrl = (String) externalUrlsHash.get("spotify");
-        System.out.println(spotifyUrl);
-        String displayName = (String) currentUser.get("display_name");
-        System.out.println(displayName);
-        String country = (String) currentUser.get("country");
-        System.out.println(country);
-
-        User user = new User(id, displayName, country, imageUrl, spotifyUrl);
-        this.userService.save(user);
-
-        List<User> list = this.userService.listAll();
-    }
+//    @GetMapping("/recentlyPlayed")
+//    public void getRecentPlayedTracks() {
+//        JSONObject response = new JSONObject();
+//        if (spotifyUserAuthorizationCode.getAccessToken() == null || spotifyUserAuthorizationCode.getAccessToken().isEmpty()) {
+//            response.put("Error", "UserAccessToken not fetched yet");
+//        }
+//        System.out.println(response);
+//        JSONObject result = playerService.getRecentlyPlayed(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
+//        JSONObject currentUser = playerService.getCurrentUser(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
+//        String id = currentUser.get("id").toString();
+//        System.out.println(id);
+//        ArrayList<LinkedHashMap> arrayList = (ArrayList<LinkedHashMap>) currentUser.get("images");;
+//        String imageUrl = arrayList.get(0).get("url").toString();
+//        System.out.println(imageUrl);
+//        LinkedHashMap externalUrlsHash = (LinkedHashMap) currentUser.get("external_urls");
+//        String spotifyUrl = (String) externalUrlsHash.get("spotify");
+//        System.out.println(spotifyUrl);
+//        String displayName = (String) currentUser.get("display_name");
+//        System.out.println(displayName);
+//        String country = (String) currentUser.get("country");
+//        System.out.println(country);
+//
+//        User user = new User(id, displayName, country, imageUrl, spotifyUrl);
+//        this.userService.save(user);
+//
+//        List<User> list = this.userService.listAll();
+//    }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="searchSongField">
+<button id="searchSong" onclick="searchSong()">Click me</button>
+<p hidden th:text="${session.token}" id="token"></p>
+<div id="searchedSongs">
+
+</div>
+<form method="post" th:action="@{/createPlaylist}">
+    <input type="text" id="name" required>
+    <input type="text" id="imageUrl">
+    <input type="text" id="description">
+    <div id="selectedSongs">
+        <div>
+            <input type="button" id="removeSong" onclick="">
+        </div>
+    </div>
+    <input type="submit">
+</form>
+<script>
+    async function searchSong() {
+        console.log("in search song");
+        let searchString = document.getElementById("searchSongField").value;
+        if(searchString.length === 0){
+            return;
+        }
+        let token = document.getElementById("token").innerText;
+        console.log(searchString);
+        console.log(token);
+        var response = await fetch(`https://api.spotify.com/v1/search?q=${searchString}&type=track&limit=4`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': token
+            },
+        })
+        var responseBody = await response.json();
+        var songs = responseBody["tracks"]["items"];
+        var songsBox = document.getElementById("searchedSongs");
+        songsBox.innerHTML = "";
+        for (i=0; i<songs.length; i++){
+            var songId = songs[i].id;
+            songsBox.innerHTML += `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div> <input type="button" value="Add Song" id="${songId}" onclick="addSong(this.id)">`;
+        }
+        console.log(responseBody);
+    }
+
+    function addSong(songId) {
+        var element = document.getElementById(songId);
+        element.parentNode.removeChild(element);
+        var songBox  = document.getElementById("selectedSongs");
+        songBox.innerHTML += `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div> <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)">`;
+    }
+</script>
+</body>
+</html>

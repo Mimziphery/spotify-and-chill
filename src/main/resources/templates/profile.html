@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
-<body>
-<p th:text="${session.user.displayName}"></p>
+<body id="BasicBackground">
+<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
+    <div class="container-fluid" >
+        <a id="logo" class="navbar-brand mx-auto"  href="/">
+            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
+            <span id="logo-text">Spotify & Chill</span>
+        </a>
+    </div>
+</nav>
+<header class="text-center mx-auto">
+    <img th:src="${session.user.imageUrl}" class="RoundedImage" id="profilePicture">
+    <p th:text="${session.user.displayName}" id="profileName" class="UsernameTextHeader"></p>
 
+</header>
+<div class="navbar navbar-expand-lg">
+    <ul class="profileButtons text-light text-center mx-auto nav" style="list-style: none">
+        <li class="nav-item"><input type="button" value="Artists"></li>
+        <li class="nav-item"><input type="button" value="Albums"></li>
+        <li class="nav-item"><input type="button" value="Playlists"></li>
+    </ul>
+</div>
+<div class="container">
+    <div class="column mx-auto">
+        <div class="row mx-auto" id="artists">
+            <ul th:each="artist : ${session.user.artists}" style="list-style: none" class="mx-auto">
+                <li class="mx-auto"><p th:text="${artist.name}"></p></li>
+                <li class="mx-auto"><img th:src="${artist.imageUrl}" class="RoundedImage"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="playlists">
+    <input type="button" value="Create Playlist"></input>
+</div>
 </body>
 </html>

@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.lang.reflect.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Entity
 @Table(name="users")
+@Getter
 public class User {
     private String displayName;
     private String bio;
@@ -21,18 +21,21 @@ public class User {
     private String imageUrl;
     private String spotifyUrl;
 
+    @ManyToMany
+    private List<Artist> artists;
 //    @ManyToOne
 //    private Artist topArtist;
 
     @Id
     private String id;
 
-    public User(String id, String displayName, String country, String imageUrl, String spotifyUrl) {
+    public User(String id, String displayName, String country, String imageUrl, String spotifyUrl, List<Artist> artists) {
         this.id = id;
         this.displayName = displayName;
         this.country = country;
         this.imageUrl = imageUrl;
         this.spotifyUrl = spotifyUrl;
+        this.artists = artists;
     }
 
     public User() {
@@ -103,13 +106,12 @@ public class User {
         this.spotifyUrl = spotifyUrl;
     }
 
-//    public Artist getTopArtist() {
-//        return topArtist;
-//    }
-//
-//    public void setTopArtist(Artist topArtist) {
-//        this.topArtist = topArtist;
-//    }
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
+    }
+    public List<Artist> getArtists(){
+        return this.artists;
+    }
 
     public String getId() {
         return id;

@@ -20,11 +20,6 @@ public class UserServiceImplementation implements UserService {
         return this.userRepository.findAll();
     }
 
-//    @Override
-//    public List<User> topArtist(Artist artist) {
-//        return this.userRepository.findAllByTopArtist(artist);
-//    }
-
     @Override
     public void save(User user) {
         this.userRepository.save(user);
@@ -33,6 +28,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User getById(String id) {
         return userRepository.getById(id);
+    }
+
+    @Override
+    public List<Artist> getTopArtists(String id) {
+        return userRepository.getById(id).getArtists();
     }
 
 
