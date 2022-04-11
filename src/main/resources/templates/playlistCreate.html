@@ -3,25 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
-<body>
-<input type="text" id="searchSongField">
-<button id="searchSong" onclick="searchSong()">Click me</button>
-<p hidden th:text="${session.token}" id="token"></p>
-<div id="searchedSongs">
+
+<body id="BasicBackground">
+<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
+    <div class="container-fluid" >
+        <a id="logo" class="navbar-brand mx-auto"  href="/">
+            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
+            <span id="logo-text">Spotify & Chill</span>
+        </a>
+        <a id="logout" class="navbar nav ms-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" href="#" >Logout</a>
+    </div>
+</nav>
+<div class="container justify-content-center mx-auto" style="background-color: gray" >
+    <label for="searchSongField" style="font-family: MuseoModerno">Seach song</label>
+    <input type="text" id="searchSongField">
+    <button id="searchSong" onclick="searchSong()">Click me</button>
+    <p hidden th:text="${session.token}" id="token"></p>
+    <div id="searchedSongs">
+
+    </div>
+    <form method="post" th:action="@{/createPlaylist}">
+
+        <div class="form-group">
+            <label for="playlistName" style="font-family: MuseoModerno">Playlist name:</label>
+            <input type="text" class="form-control" id="playlistName" required>
+        </div>
+        <div class="form-group">
+            <label for="playlistDescription" style="font-family: MuseoModerno">Description: </label>
+            <input type="text" class="form-control" id="playlistDescription">
+        </div>
+
+        <div class="form-group">
+            <label for="playlistImage">Choose image: </label>
+            <input type="file" class="form-control-file" id="playlistImage">
+        </div>
+
+
+        <div id="selectedSongs">
+        </div>
+        <div class="container text-center">
+            <a class="btn btn-dark justify-content-center" type="submit" href="/playlistCreate" style="font-family: MuseoModerno">Create Playlist</a>
+
+        </div>
+    </form>
+
+
+
 
 </div>
-<form method="post" th:action="@{/createPlaylist}">
-    <input type="text" id="name" required>
-    <input type="text" id="imageUrl">
-    <input type="text" id="description">
-    <div id="selectedSongs">
-        <div>
-            <input type="button" id="removeSong" onclick="">
-        </div>
-    </div>
-    <input type="submit">
-</form>
+
 <script>
     async function searchSong() {
         console.log("in search song");
@@ -46,16 +81,16 @@
         songsBox.innerHTML = "";
         for (i=0; i<songs.length; i++){
             var songId = songs[i].id;
-            songsBox.innerHTML += `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div> <input type="button" value="Add Song" id="${songId}" onclick="addSong(this.id)">`;
+            songsBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe><input type="button" value="Add Song" id="${songId}" onclick="addSong(this.id)"></div>`;
         }
         console.log(responseBody);
     }
 
     function addSong(songId) {
         var element = document.getElementById(songId);
-        element.parentNode.removeChild(element);
+        element.parentNode.parentNode.removeChild(element.parentNode);
         var songBox  = document.getElementById("selectedSongs");
-        songBox.innerHTML += `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div> <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)">`;
+        songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div> <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
     }
 </script>
 </body>
