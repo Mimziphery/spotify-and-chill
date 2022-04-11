@@ -14,6 +14,7 @@ import java.util.*;
 import static mk.ukim.finki.spotifyandchill.service.AuthorizationService.callAction;
 import static mk.ukim.finki.spotifyandchill.service.utlis.RestCallUtilis.checkResponseCodeExpected;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -92,6 +93,26 @@ public class PlayerService {
 
         // check response
         checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getTopArtists");
+
+        return responseEntity.getBody();
+    }
+
+    public JSONObject postPlaylist(String token, JSONObject body, String userId) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getCreatePlaylist();
+
+        createIndexUrl = String.format(createIndexUrl, userId);
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "createPlaylist", createIndexUrl, POST,
+                new HttpEntity<>(body, requestHeaders), JSONObject.class, null);
+
+        // check response
+        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "createPlaylist");
 
         return responseEntity.getBody();
     }

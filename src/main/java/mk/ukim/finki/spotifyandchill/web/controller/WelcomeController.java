@@ -4,10 +4,13 @@ import mk.ukim.finki.spotifyandchill.model.*;
 import mk.ukim.finki.spotifyandchill.service.*;
 import org.hibernate.*;
 import org.json.simple.*;
+import org.json.simple.parser.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.json.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.*;
 
 import javax.servlet.http.*;
 import java.util.*;
@@ -132,7 +135,11 @@ public class WelcomeController {
     }
 
     @PostMapping("/createPlaylist")
-    public String createPlaylist(){
+    public String createPlaylist(@RequestBody String jsonString){
+        System.out.println(jsonString);
+        JsonParser jsonParser = new JacksonJsonParser();
+        Map<String, Object> map = jsonParser.parseMap(jsonString);
+        System.out.println(map);    
         return "redirect:/profile";
     }
 

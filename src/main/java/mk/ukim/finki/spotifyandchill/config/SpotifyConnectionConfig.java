@@ -47,4 +47,7 @@ public class SpotifyConnectionConfig {
 
     @Setter(AccessLevel.NONE)
     private String topArtists = "https://api.spotify.com/v1/me/top/artists?limit=3";
+
+    @Setter(AccessLevel.NONE)
+    private String createPlaylist = "https://api.spotify.com/v1/users/%s/playlists";
 }
