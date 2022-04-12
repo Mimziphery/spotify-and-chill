@@ -53,6 +53,12 @@ public class WelcomeController {
     ArtistService artistService;
 
     @Autowired
+    SongService songService;
+
+    @Autowired
+    PlaylistService playlistService;
+
+    @Autowired
     PlayerService playerService;
 
 
@@ -122,6 +128,9 @@ public class WelcomeController {
         session.setAttribute("user", user);
         session.setAttribute("token", spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
         System.out.println("this is token" + session.getAttribute("token"));
+
+        session.setAttribute("playlists", user.getPlaylists());
+
         return "redirect:/profile";
         //System.out.println("Finished");
         //result.put("goToRecentlyPlayedLink", "http://localhost:8080/index/recentlyPlayed");
@@ -135,11 +144,46 @@ public class WelcomeController {
     }
 
     @PostMapping("/createPlaylist")
-    public String createPlaylist(@RequestBody String jsonString){
+    public String createPlaylist(@RequestBody String jsonString, HttpSession session){
         System.out.println(jsonString);
         JsonParser jsonParser = new JacksonJsonParser();
         Map<String, Object> map = jsonParser.parseMap(jsonString);
-        System.out.println(map);
+        String name = (String) map.get("name");
+        String description = (String) map.get("description");
+        List<String> songIds = new ArrayList<>();
+
+        JSONObject createPlaylistBody = new JSONObject();
+        createPlaylistBody.put("name", name);
+        createPlaylistBody.put("description", description);
+
+        User currentUser = (User) session.getAttribute("user");
+
+        JSONObject playlist = playerService.postPlaylist(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken(), createPlaylistBody, currentUser.getId());
+
+        System.out.println(playlist);
+        songIds = (ArrayList<String>) map.get("songIds");
+        JSONObject addSongsBody = new JSONObject();
+
+        JSONArray jsonArray = new JSONArray();
+        for (int i=0; i<songIds.size(); i++){
+            String songUri = "spotify:track:" + songIds.get(i);
+            jsonArray.add(i, songUri);
+        }
+        addSongsBody.put("uris", jsonArray);
+
+        String playlistId = (String) playlist.get("id");
+        playerService.addSongsToPlaylist(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken(), addSongsBody, playlistId );
+
+        Playlist userPlaylist = new Playlist(playlistId);
+        playlistService.save(userPlaylist);
+
+        if(!currentUser.isPlaylistDefined()){
+            currentUser.newPlaylistArray();
+        }
+        currentUser.appendPlaylist(userPlaylist);
+        userService.save(currentUser);
+
+        session.setAttribute("user", currentUser);
         return "redirect:/profile";
     }
 

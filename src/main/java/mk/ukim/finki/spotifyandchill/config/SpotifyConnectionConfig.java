@@ -50,4 +50,8 @@ public class SpotifyConnectionConfig {
 
     @Setter(AccessLevel.NONE)
     private String createPlaylist = "https://api.spotify.com/v1/users/%s/playlists";
+
+    @Setter(AccessLevel.NONE)
+    private String addSongsToPlaylist = "https://api.spotify.com/v1/playlists/%s/tracks";
+
 }

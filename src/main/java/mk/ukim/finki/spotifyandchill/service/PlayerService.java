@@ -92,7 +92,6 @@ public class PlayerService {
                 new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
 
         // check response
-        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getTopArtists");
 
         return responseEntity.getBody();
     }
@@ -112,7 +111,26 @@ public class PlayerService {
                 new HttpEntity<>(body, requestHeaders), JSONObject.class, null);
 
         // check response
-        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "createPlaylist");
+
+        return responseEntity.getBody();
+    }
+
+
+    public JSONObject addSongsToPlaylist(String token, JSONObject body, String playlistId) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getAddSongsToPlaylist();
+
+        createIndexUrl = String.format(createIndexUrl, playlistId);
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "addSongsToPlaylist", createIndexUrl, POST,
+                new HttpEntity<>(body, requestHeaders), JSONObject.class, null);
+
+        // check response
 
         return responseEntity.getBody();
     }

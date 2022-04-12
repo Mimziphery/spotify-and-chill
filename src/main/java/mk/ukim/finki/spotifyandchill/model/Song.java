@@ -1,63 +1,29 @@
-//package mk.ukim.finki.spotifyandchill.model;
-//
-//import lombok.*;
-//import org.springframework.stereotype.Component;
-//
-//import javax.persistence.*;
-//
-//@Data
-//@Entity
-//public class Song {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//
-//    private String name;
-//    @ManyToOne
-//    private Artist artist;
-//    @ManyToOne
-//    private Album album;
-//
-//    public Song(String name, Artist artist, Album album) {
-//        this.name = name;
-//        this.artist = artist;
-//        this.album = album;
-//    }
-//
-//    public Song() {
-//
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public Artist getArtist() {
-//        return artist;
-//    }
-//
-//    public void setArtist(Artist artist) {
-//        this.artist = artist;
-//    }
-//
-//    public Album getAlbum() {
-//        return album;
-//    }
-//
-//    public void setAlbum(Album album) {
-//        this.album = album;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    @Id
-//    public Long getId() {
-//        return id;
-//    }
-//}
+package mk.ukim.finki.spotifyandchill.model;
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name="songs")
+public class Song {
+    @Id
+    private String id;
+
+    public Song(String id) {
+        this.id = id;
+    }
+
+    public Song() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}

@@ -23,6 +23,12 @@ public class User {
 
     @ManyToMany
     private List<Artist> artists;
+
+    @OneToMany
+    private List<Playlist> playlists;
+
+    @ManyToOne
+    private Song topSong;
 //    @ManyToOne
 //    private Artist topArtist;
 
@@ -42,6 +48,22 @@ public class User {
 
     }
 
+    public void newPlaylistArray(){
+        this.playlists = new ArrayList<>();
+    }
+
+    public boolean isPlaylistDefined(){
+        if (this.playlists == null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public void appendPlaylist(Playlist playlist){
+        this.playlists.add(playlist);
+    }
     public String getDisplayName() {
         return displayName;
     }
