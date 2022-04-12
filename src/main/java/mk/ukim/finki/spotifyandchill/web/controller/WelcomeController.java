@@ -139,7 +139,7 @@ public class WelcomeController {
         System.out.println(jsonString);
         JsonParser jsonParser = new JacksonJsonParser();
         Map<String, Object> map = jsonParser.parseMap(jsonString);
-        System.out.println(map);    
+        System.out.println(map);
         return "redirect:/profile";
     }
 
