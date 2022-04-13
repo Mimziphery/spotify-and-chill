@@ -119,7 +119,18 @@ public class WelcomeController {
             savedArtists.add(artistService.save(artistSave));
         }
         //user.setArtists();
-        User user = new User(id, displayName, country, imageUrl, spotifyUrl, savedArtists);
+        User user = new User();
+        User userOld = Optional.of(userService.getById(id)).orElse(null);
+        List<Playlist> playlists;
+        if (userOld!=null){
+            playlists = userOld.getPlaylists();
+            user.setPlaylists(playlists);
+        }
+        user.setId(id);
+        user.setCountry(country);
+        user.setImageUrl(imageUrl);
+        user.setSpotifyUrl(spotifyUrl);
+        user.setArtists(savedArtists);
         this.userService.save(user);
 
         user = this.userService.getById(id);
@@ -139,7 +150,8 @@ public class WelcomeController {
     }
 
     @GetMapping("/createPlaylist")
-    public String createPlaylistView(){
+    public String createPlaylistView(HttpSession session){
+        session.removeAttribute("playlist");
         return "playlistCreate";
     }
 
@@ -187,4 +199,49 @@ public class WelcomeController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/editPlaylist/{id}")
+    public String editPlaylistView(@PathVariable String id, HttpSession session) throws Throwable {
+        User user = (User) session.getAttribute("user");
+        List<Playlist> playlists = user.getPlaylists();
+        Playlist playlist = playlistService.getById(id);
+
+        if(!playlists.contains(playlist)){
+            throw new Throwable("Forbidden");
+        }else{
+            session.setAttribute("playlist", playlist);
+            return "playlistCreate";
+        }
+    }
+
+    @PostMapping("/editPlaylist/{id}")
+    public String editPlaylist(@PathVariable String id, @RequestBody String jsonString, HttpSession session){
+        System.out.println(jsonString);
+        JsonParser jsonParser = new JacksonJsonParser();
+        Map<String, Object> map = jsonParser.parseMap(jsonString);
+        String name = (String) map.get("name");
+        String description = (String) map.get("description");
+        List<String> songIds = new ArrayList<>();
+
+        JSONObject editPlaylistBody = new JSONObject();
+        editPlaylistBody.put("name", name);
+        editPlaylistBody.put("description", description);
+
+
+        JSONObject playlist = playerService.editPlaylist(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken(), editPlaylistBody, id);
+
+        System.out.println(playlist);
+        songIds = (ArrayList<String>) map.get("songIds");
+        JSONObject addSongsBody = new JSONObject();
+
+        JSONArray jsonArray = new JSONArray();
+        for (int i=0; i<songIds.size(); i++){
+            String songUri = "spotify:track:" + songIds.get(i);
+            jsonArray.add(i, songUri);
+        }
+        addSongsBody.put("uris", jsonArray);
+
+        playerService.editSongsOfPlaylist(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken(), addSongsBody, id );
+
+        return "redirect:/profile";
+    }
 }

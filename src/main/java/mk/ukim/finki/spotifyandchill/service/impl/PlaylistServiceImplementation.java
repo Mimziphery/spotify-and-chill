@@ -19,4 +19,9 @@ public class PlaylistServiceImplementation implements PlaylistService {
     public Playlist save(Playlist playlist) {
         return Optional.of(playlistRepository.save(playlist)).orElseThrow();
     }
+
+    @Override
+    public Playlist getById(String id) {
+        return Optional.of(playlistRepository.getById(id)).orElseThrow();
+    }
 }

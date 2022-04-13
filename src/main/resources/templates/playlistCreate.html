@@ -24,13 +24,14 @@
     <input type="text" id="searchSongField">
     <button id="searchSong" onclick="searchSong()">Click me</button>
     <p hidden th:text="${session.token}" id="token"></p>
+    <p hidden th:text="(${session.playlist} != null ? ${session.playlist.id} : '')" id="playlistId"></p>
     <div id="searchedSongs">
 
     </div>
     <form method="post">
         <div class="form-group">
             <label for="playlistName" style="font-family: MuseoModerno">Playlist name:</label>
-            <input type="text" class="form-control" id="playlistName" required>
+            <input type="text" class="form-control" id="playlistName" required >
         </div>
         <div class="form-group">
             <label for="playlistDescription" style="font-family: MuseoModerno">Description: </label>
@@ -48,6 +49,44 @@
 </div>
 
 <script>
+    window.onload = function() {
+        var playlistId = document.getElementById("playlistId").innerText;
+        if (playlistId!== null && playlistId !== undefined && playlistId.length!==0){
+            fetchPlaylist(playlistId);
+        }
+    };
+
+    async function fetchPlaylist(playlistId) {
+        let token = document.getElementById("token").innerText;
+
+        var response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': token
+            }
+        })
+
+        var responseBody = await response.json();
+        var playlistName = document.getElementById("playlistName");
+        playlistName.setAttribute("value", responseBody.name);
+
+        var playlistDescription = document.getElementById("playlistDescription");
+        playlistDescription.setAttribute("value", responseBody.description);
+
+
+        var songBox = document.getElementById("selectedSongs");
+        for(i=0; responseBody.tracks.items.length; i++){
+            var songId = responseBody.tracks.items[i].track.id;
+
+            songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
+        }
+        //TRACKS tracks.items[i].track.id
+        //response.description
+        //response.name
+    }
+
     async function searchSong() {
         console.log("in search song");
         let searchString = document.getElementById("searchSongField").value;
@@ -107,16 +146,32 @@
             requestBody["songIds"].push(song);
         }
 
-        fetch(`/createPlaylist`, {
-            method: 'POST',
-            body: JSON.stringify(requestBody),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-        }).then(res =>{
-            location.replace("profile");
-        })
+        var playlistId = document.getElementById("playlistId").innerText;
+        if (playlistId!== null && playlistId !== undefined && playlistId.length!==0){
+            fetch(`/editPlaylist/${playlistId}`, {
+                method: 'POST',
+                body: JSON.stringify(requestBody),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            }).then(res => {
+                if (res.redirected) {
+                    window.location.href = res.url;
+                }
+            })
+        }else {
+            fetch(`/createPlaylist`, {
+                method: 'POST',
+                body: JSON.stringify(requestBody),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            }).then(res => {
+                location.replace("profile");
+            })
+        }
     }
 </script>
 </body>
