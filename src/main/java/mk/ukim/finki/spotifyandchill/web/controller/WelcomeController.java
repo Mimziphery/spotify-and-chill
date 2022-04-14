@@ -125,12 +125,14 @@ public class WelcomeController {
         }
         //user.setArtists();
         User user = new User();
-        User userOld = Optional.of(userService.getById(id)).orElse(null);
+
         List<Playlist> playlists;
-        if (userOld!=null){
+        if(userService.getById(id).isPresent()){
+            User userOld = userService.getById(id).get();
             playlists = userOld.getPlaylists();
             user.setPlaylists(playlists);
         }
+
         user.setId(id);
         user.setCountry(country);
         user.setImageUrl(imageUrl);
@@ -138,7 +140,7 @@ public class WelcomeController {
         user.setArtists(savedArtists);
         this.userService.save(user);
 
-        user = this.userService.getById(id);
+        user = this.userService.getById(id).get();
 
         System.out.println(user.toString());
         session.setAttribute("user", user);
