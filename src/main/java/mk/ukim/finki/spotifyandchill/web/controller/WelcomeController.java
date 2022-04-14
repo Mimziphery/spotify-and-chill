@@ -138,6 +138,7 @@ public class WelcomeController {
         }
 
         user.setId(id);
+        user.setDisplayName(displayName);
         user.setCountry(country);
         user.setImageUrl(imageUrl);
         user.setSpotifyUrl(spotifyUrl);
