@@ -77,6 +77,7 @@ public class PlayerService {
         return responseEntity.getBody();
     }
 
+
     public JSONObject getTopArtists(String token) {
         // prepare create index url
         String createIndexUrl = spotifyConnectionConfig.getTopArtists();
@@ -90,12 +91,29 @@ public class PlayerService {
         ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopArtists", createIndexUrl, GET,
                 new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
 
-
-        System.out.println(responseEntity.getBody());
         // check response
 
         return responseEntity.getBody();
     }
+
+    public JSONObject getTopArtistsLongTerm(String token) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getTopArtistsLongTerm();
+
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopArtists", createIndexUrl, GET,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+
+        // check response
+
+        return responseEntity.getBody();
+    }
+
 
     public JSONObject postPlaylist(String token, JSONObject body, String userId) {
         // prepare create index url

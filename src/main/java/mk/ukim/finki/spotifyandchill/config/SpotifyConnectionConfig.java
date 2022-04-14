@@ -49,6 +49,9 @@ public class SpotifyConnectionConfig {
     private String topArtists = "https://api.spotify.com/v1/me/top/artists?limit=3";
 
     @Setter(AccessLevel.NONE)
+    private String topArtistsLongTerm = "https://api.spotify.com/v1/me/top/artists?limit=3&time_range=long_term";
+
+    @Setter(AccessLevel.NONE)
     private String createPlaylist = "https://api.spotify.com/v1/users/%s/playlists";
 
     @Setter(AccessLevel.NONE)
@@ -59,4 +62,7 @@ public class SpotifyConnectionConfig {
 
     @Setter(AccessLevel.NONE)
     private String editSongsOfPlaylist = "https://api.spotify.com/v1/playlists/%s/tracks";
+
+
+
 }

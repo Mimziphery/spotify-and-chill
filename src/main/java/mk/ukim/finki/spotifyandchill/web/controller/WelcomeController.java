@@ -109,6 +109,10 @@ public class WelcomeController {
 
         JSONObject topArtists = playerService.getTopArtists(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
         ArrayList<LinkedHashMap> artistsList = (ArrayList<LinkedHashMap>) topArtists.get("items");
+        if (artistsList.size() == 0){
+            topArtists = playerService.getTopArtistsLongTerm(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
+            artistsList = (ArrayList<LinkedHashMap>) topArtists.get("items");
+        }
         List<Artist> savedArtists = new ArrayList<>();
         for (int i=0; i< artistsList.size(); i++){
             LinkedHashMap artist = artistsList.get(i);
