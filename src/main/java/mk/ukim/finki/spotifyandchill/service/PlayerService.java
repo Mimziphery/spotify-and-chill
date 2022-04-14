@@ -90,6 +90,8 @@ public class PlayerService {
         ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopArtists", createIndexUrl, GET,
                 new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
 
+
+        System.out.println(responseEntity.getBody());
         // check response
 
         return responseEntity.getBody();
