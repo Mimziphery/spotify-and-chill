@@ -89,8 +89,13 @@ public class WelcomeController {
         JSONObject currentUser = playerService.getCurrentUser(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
         String id = currentUser.get("id").toString();
         System.out.println(id);
-        ArrayList<LinkedHashMap> arrayList = (ArrayList<LinkedHashMap>) currentUser.get("images");;
-        String imageUrl = arrayList.get(0).get("url").toString();
+        ArrayList<LinkedHashMap> arrayList = (ArrayList<LinkedHashMap>) currentUser.get("images");
+        String imageUrl;
+        if(arrayList.size() == 0) {
+            imageUrl = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-3.jpg";
+        }else{
+            imageUrl = arrayList.get(0).get("url").toString();
+        }
         System.out.println(imageUrl);
         LinkedHashMap externalUrlsHash = (LinkedHashMap) currentUser.get("external_urls");
         String spotifyUrl = (String) externalUrlsHash.get("spotify");
