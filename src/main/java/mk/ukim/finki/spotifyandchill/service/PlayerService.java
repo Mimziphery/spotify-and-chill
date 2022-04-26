@@ -58,24 +58,24 @@ public class PlayerService {
         return responseEntity.getBody();
     }
 
-    public JSONObject getRecentlyPlayed(String token) {
-        // prepare create index url
-        String createIndexUrl = spotifyConnectionConfig.getPlayerUrlRecentlyPlayed();
-
-        // prepare request headers
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
-        requestHeaders.set("Authorization", token);
-
-        // hit request
-        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getRecentlyPlayed", createIndexUrl, GET,
-                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
-
-        // check response
-        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getRecentlyPlayed");
-
-        return responseEntity.getBody();
-    }
+//    public JSONObject getRecentlyPlayed(String token) {
+//        // prepare create index url
+//        String createIndexUrl = spotifyConnectionConfig.getPlayerUrlRecentlyPlayed();
+//
+//        // prepare request headers
+//        HttpHeaders requestHeaders = new HttpHeaders();
+//        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+//        requestHeaders.set("Authorization", token);
+//
+//        // hit request
+//        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getRecentlyPlayed", createIndexUrl, GET,
+//                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+//
+//        // check response
+//        checkResponseCodeExpected(responseEntity, Arrays.asList(NO_CONTENT, OK), "getRecentlyPlayed");
+//
+//        return responseEntity.getBody();
+//    }
 
 
     public JSONObject getTopArtists(String token) {
@@ -107,6 +107,42 @@ public class PlayerService {
 
         // hit request
         ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopArtists", createIndexUrl, GET,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+
+        // check response
+
+        return responseEntity.getBody();
+    }
+
+    public JSONObject getAlbums(String token) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getUserAlbums();
+
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getSavedAlbums", createIndexUrl, GET,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
+
+        // check response
+
+        return responseEntity.getBody();
+    }
+
+    public JSONObject getTopSong(String token) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getUserTopSong();
+
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "getTopSong", createIndexUrl, GET,
                 new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
 
         // check response
@@ -148,6 +184,25 @@ public class PlayerService {
         // hit request
         ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "editPlaylist", createIndexUrl, PUT,
                 new HttpEntity<>(body, requestHeaders), JSONObject.class, null);
+
+        // check response
+
+        return responseEntity.getBody();
+    }
+    public JSONObject deletePlaylist(String token, String playlistId) {
+        // prepare create index url
+        String createIndexUrl = spotifyConnectionConfig.getDeletePlaylist();
+
+        createIndexUrl = String.format(createIndexUrl, playlistId);
+        System.out.println("index url: " + createIndexUrl);
+        // prepare request headers
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+        requestHeaders.set("Authorization", token);
+
+        // hit request
+        ResponseEntity<JSONObject> responseEntity = callAction(restTemplate, "deletePlaylist", createIndexUrl, DELETE,
+                new HttpEntity<>(null, requestHeaders), JSONObject.class, null);
 
         // check response
 

@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-@Component // to make a default bean
-@Data // to create getter setter
-@JsonIgnoreProperties(ignoreUnknown = true) // to ignore
-@PropertySource("classpath:application.properties") // to read property values
+@Component
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+@PropertySource("classpath:application.properties")
 public class SpotifyConnectionConfig {
 
-    @Value("96faf0542a934748ab800dae8f474e70") // TODO add relevant fields
+    @Value("96faf0542a934748ab800dae8f474e70")
     private String clientId;
 
-    @Value("1961f39ea9a847c7aaf7729d5b07744c") // TODO add relevant fields
+    @Value("1961f39ea9a847c7aaf7729d5b07744c")
     private String clientSecret;
 
     @Setter(AccessLevel.NONE)
@@ -63,6 +63,12 @@ public class SpotifyConnectionConfig {
     @Setter(AccessLevel.NONE)
     private String editSongsOfPlaylist = "https://api.spotify.com/v1/playlists/%s/tracks";
 
+    @Setter(AccessLevel.NONE)
+    private String deletePlaylist = "https://api.spotify.com/v1/playlists/%s/followers";
 
+    @Setter(AccessLevel.NONE)
+    private String userAlbums = "https://api.spotify.com/v1/me/albums?limit=3";
 
+    @Setter(AccessLevel.NONE)
+    private String userTopSong = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=1";
 }

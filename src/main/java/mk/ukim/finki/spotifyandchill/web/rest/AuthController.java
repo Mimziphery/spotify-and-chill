@@ -29,10 +29,10 @@ public class AuthController {
     PlayerService playerService;
 
 
-    @GetMapping("/authorize")
-    public String authorize() {
-        return authorizationService.grantApplicationAccess();
-    }
+//    @GetMapping("/authorize")
+//    public String authorize() {
+//        return authorizationService.grantApplicationAccess();
+//    }
 
 //    @GetMapping("/token")
 //    public String getToken() {

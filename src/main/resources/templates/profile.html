@@ -2,37 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
+<header th:replace="fragments/navbar.html"/>
 <body id="BasicBackground">
-<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
-    <div class="container-fluid" >
-        <a id="logo" class="navbar-brand mx-auto"  href="/">
-            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
-            <span id="logo-text">Spotify & Chill</span>
-        </a>
-        <a id="logout" class="navbar nav ms-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" href="#" >Logout</a>
-    </div>
-</nav>
+<p hidden th:text="${session.token}" id="token"></p>
 <header class="text-center mx-auto">
     <img th:src="${session.user.imageUrl}" class="RoundedImage" id="profilePicture">
     <p th:text="${session.user.displayName}" id="profileName" class="UsernameTextHeader"></p>
-    <nav class="nav justify-content-center" >
-        <a class="nav-link">
-            <i class="bi bi-facebook" style="color: #1cb398"></i>
-        </a>
-        <a class="nav-link">
-            <i class="bi bi-spotify" style="color: #1cb398"></i>
-        </a>
-        <a class="nav-link">
-            <i class="bi bi-instagram" style="color: #1cb398"></i>
-        </a>
-    </nav>
+    <div class="mx-auto justify-content-center">
+
+        <iframe style="border-radius:12px" th:src="'https://open.spotify.com/embed/track/' + ${session.user.topSong.id} + '?utm_source=generator'" width="25%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+    </div>
 
 </header>
 <nav class="nav nav-pills mx-auto bg-black justify-content-center">
@@ -53,6 +39,15 @@
     </div>
 </div>
 <div style="display: none" class="container navDivs" id="albumsContainer">
+    <div class="column mx-auto">
+        <div class="row mx-auto" id="albums">
+            <ul th:each="album : ${session.user.albums}" style="list-style: none" class="mx-auto">
+                <li class="mx-auto"><img th:src="${album.imageUrl}" class="RoundedImage"></li>
+                <li style="font-family: MuseoModerno" class="mx-auto text-light text-center pt-3"><p th:text="${album.name}"></p></li>
+                <li style="font-family: MuseoModerno" class="mx-auto text-light text-center pt-3"><p th:text="${album.aristName}"></p></li>
+            </ul>
+        </div>
+    </div>
 
 </div>
 <div style="display: none" class="container navDivs" id="playlistContainer">
@@ -65,7 +60,11 @@
             <li class="mx-auto">
                 <iframe style="border-radius:12px" th:src="'https://open.spotify.com/embed/playlist/' + ${playlist.id} +'?utm_source=generator'" width="25%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 <a class="btn btn-dark justify-content-center" type="button" th:href="'/editPlaylist/' + ${playlist.id}" style="font-family: MuseoModerno">Edit Playlist</a>
-                <a class="btn btn-dark justify-content-center" type="button" href="/deletePlaylist" style="font-family: MuseoModerno">Delete Playlist</a>
+                <form th:action="@{'/deletePlaylist/{id}' (id=${playlist.id})}" th:method="DELETE">
+                    <button type="submit btn btn-dark justify-content-center" style="font-family: MuseoModerno" class="btn btn-dark justify-content-center">
+                        Delete Playlist
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
@@ -73,24 +72,21 @@
 
 </div>
 <script>
-    function checkSelected(selected){
+    async function checkSelected(selected) {
         var allDivs = document.getElementsByClassName('navDivs');
-        console.log(allDivs);
-        console.log(selected);
 
-        for(var i=0; i<allDivs.length;i++){
+        for (var i = 0; i < allDivs.length; i++) {
             allDivs[i].setAttribute('style', 'display:none');
         }
-        if(selected==='Artists'){
+        if (selected === 'Artists') {
             document.getElementById('artistsContainer').setAttribute('style', 'display:block');
-        }
-        else if(selected==='Albums'){
+        } else if (selected === 'Albums') {
             document.getElementById('albumsContainer').setAttribute('style', 'display:block');
-        }
-        else if(selected==='Playlists'){
+        } else if (selected === 'Playlists') {
             document.getElementById('playlistContainer').setAttribute('style', 'display:block');
         }
     }
 </script>
 </body>
+<footer th:replace="fragments/footer.html"/>
 </html>

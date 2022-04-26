@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Getter
 @Table(name="artists")
 public class Artist {
     @Id
@@ -27,35 +28,4 @@ public class Artist {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getSpotifyUrl() {
-        return spotifyUrl;
-    }
-
-    public void setSpotifyUrl(String spotifyUrl) {
-        this.spotifyUrl = spotifyUrl;
-    }
 }

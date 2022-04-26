@@ -24,4 +24,11 @@ public class PlaylistServiceImplementation implements PlaylistService {
     public Playlist getById(String id) {
         return Optional.of(playlistRepository.getById(id)).orElseThrow();
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.playlistRepository.deleteById(id);
+    }
+
+
 }

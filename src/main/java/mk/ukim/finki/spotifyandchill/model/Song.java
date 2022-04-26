@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Getter
 @Table(name="songs")
 public class Song {
     @Id
@@ -19,11 +20,4 @@ public class Song {
 
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

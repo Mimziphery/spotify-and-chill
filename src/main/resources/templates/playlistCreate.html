@@ -8,17 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/style.css}" />
 </head>
-
+<header th:replace="fragments/navbar.html"/>
 <body id="BasicBackground">
-<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
-    <div class="container-fluid" >
-        <a id="logo" class="navbar-brand mx-auto"  href="/">
-            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
-            <span id="logo-text">Spotify & Chill</span>
-        </a>
-        <a id="logout" class="navbar nav ms-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" href="#" >Logout</a>
-    </div>
-</nav>
 <div class="container justify-content-center mx-auto" style="background-color: gray" >
     <label for="searchSongField" style="font-family: MuseoModerno">Seach song</label>
     <input type="text" id="searchSongField">
@@ -169,10 +160,11 @@
                     'Accept': 'application/json',
                 },
             }).then(res => {
-                location.replace("profile");
+                location.replace("/profile");
             })
         }
     }
 </script>
+<footer th:replace="fragments/footer.html"/>
 </body>
 </html>

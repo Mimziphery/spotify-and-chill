@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Getter
 @Table(name="playlists")
 public class Playlist {
     @Id
@@ -18,13 +19,5 @@ public class Playlist {
 
     public Playlist() {
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

@@ -3,90 +3,96 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>About Us</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/style.css}" />
-</head>
-<body id="BasicBackground">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
-    <div class="container-fluid" >
-        <a id="logo" class="navbar-brand mx-auto"  href="/">
-            <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
-            <span id="logo-text">Spotify & Chill</span>
-        </a>
-    </div>
-</nav>
-<h1 id="headers">About Us</h1>
-<h2 class="DevHeader">Development</h2>
-<div d-flex justify-content-around bd-highlight>
-<div class="AdminProfileDiv">
-    <div class="ImageProfiles">
-        <img th:src="@{/Mimz1.jpeg}" class="RoundedImage">
-        <h2 class="UsernameTextHeader">Mimz</h2>
-        <div class="icons">
-            <a th:href="@{https://open.spotify.com/user/6uyn8ljlhyn01knaq3a1mtvdy?si=05c242b25f7343e0}">
-                <img th:src="Spotify_Icon_RGB_White.png" class="icon">
-            </a>
-            <a th:href="@{https://www.facebook.com/mimozamickoska}">
-                <img th:src="facebook-logo.png" class="facebooklogo">
-            </a>
-            <a th:href="@{https://www.instagram.com/mimoza_mickoska/}">
-                <img th:src="instagram-logo.png" class="icon">
-            </a>
-            <img th:src="linkedin-logo.png" class="icon">
-        </div>
-    </div>
-</div>
-<div class="AdminProfileDiv">
-    <div class="ImageProfiles">
-        <img th:src="@{/Marko1.png}" class="RoundedImage">
-        <h2 class="UsernameTextHeader">Marko</h2>
-        <div class="iconsMarko">
-            <a th:href="@{https://open.spotify.com/user/77d7qf5fg2av5zhvrcbs9f0nv?si=720cf738398b4828}">
-            <img th:src="Spotify_Icon_RGB_White.png" class="icon">
-            </a>
-            <a th:href="@{https://www.linkedin.com/in/marko-krajceski-493716183}">
-            <img th:src="linkedin-logo.png" class="icon">
-            </a>
-        </div>
-    </div>
-</div>
-<div class="AdminProfileDiv">
-    <div class="ImageProfiles">
-        <img th:src="@{/Jovana1.png}" class="RoundedImage">
-        <h2 class="UsernameTextHeader">Jovana</h2>
-        <div class="icons">
-            <img th:src="Spotify_Icon_RGB_White.png" class="icon">
-            <a th:href="@{https://www.facebook.com/jovana.krstevska.5}">
-            <img th:src="facebook-logo.png" class="facebooklogo">
-            </a>
-            <a th:href="@{https://www.instagram.com/jovana.krstevskaa/}">
-            <img th:src="instagram-logo.png" class="icon">
-            </a>
-            <img th:src="linkedin-logo.png" class="icon">
-        </div>
-    </div>
-</div>
-</div>
-<h2 class="DesignHeader">Design</h2>
-<div d-flex justify-content-around bd-highlight>
-<div id="AdminProfileDiv" style="width: 100%">
-    <div class="ImageProfiles">
-        <img th:src="@{/Deki.jpeg}" class="RoundedImage">
-        <h2 class="UsernameTextHeader">Dejan</h2>
-        <div id="dekiicon">
-            <a th:href="@{https://open.spotify.com/user/92yfbpjxl5tqkn53wn1rjw6in?si=tl3QeODWTsqTsojp5pe50A&utm_source=copy-link}">
-                <img th:src="Spotify_Icon_RGB_White.png" class="icon">
-            </a>
-            <a th:href="@{https://www.facebook.com/dejanichev}">
-                <img th:src="facebook-logo.png" class="facebooklogo">
-            </a>
-            <a th:href="@{https://www.instagram.com/_escaperope_/}">
-                <img th:src="instagram-logo.png" id="icon">
-            </a>
-        </div>
-    </div>
-</div>
-</div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+</head>
+<header th:replace="fragments/navbar.html"/>
+<body id="BasicBackground">
+<header>
+    <p class="h1 text-center p-5" style="color: #1CB398; font-family: MuseoModerno">About Us</p>
+    <p class="h2 text-center pt-5" style="color:darkred; font-family: MuseoModerno">Development</p>
+</header>
+
+<section class="mt-3 text-center">
+    <div class="row">
+        <div class="col">
+            <div class="container text-center mx-auto">
+                <img th:src="@{/Mimz1.jpeg}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Mimoza</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container text-center mx-auto">
+                <img th:src="@{/Marko1.png}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Marko</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container text-center mx-auto">
+                <img th:src="@{/Jovana1.png}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Jovana</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col mx-auto text-center">
+            <div class="container text-center mx-auto">
+                <p class="h2 my-3" style="font-family: MuseoModerno; color: darkred">Design</p>
+                <img th:src="@{/Deki.jpeg}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Dejan</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+</section>
+<footer th:replace="fragments/footer.html"/>
 </body>
 </html>
