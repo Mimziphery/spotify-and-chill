@@ -13,19 +13,40 @@
 <header th:replace="fragments/navbar.html"/>
 <body id="welcomePageBackground">
 
-<div id="wrapper" class="container mx-auto justify-content-center">
-<a id="login" class="position-absolute" th:href="@{https://accounts.spotify.com/authorize/?scope=playlist-modify-public playlist-modify-private user-read-private playlist-read-private user-top-read playlist-modify-public user-library-read user-read-recently-played streaming app-remote-control&response_type=code&redirect_uri=http://localhost:8080/responseFromSpotify&client_id=96faf0542a934748ab800dae8f474e70}" >
-    <div class="row" id="login-with-text">
-        <span id="login-text">Login</span>
-        <br>
-        <span style="font-size: 22px">with</span>
-    </div>
-    <div class="row">
-        <img id="login-img" class="row" th:src="@{/Spotify_Logo_RGB_White.png}"   alt="...">
-    </div>
-</a>
+    <th:block th:if="${session.user==null}">
 
-<img id="background"  th:src="@{/Vector.svg}">
+        <div id="wrapper" class="container mx-auto justify-content-center">
+            <a id="login" class="position-absolute" th:href="@{https://accounts.spotify.com/authorize/?scope=playlist-modify-public playlist-modify-private user-read-private playlist-read-private user-top-read playlist-modify-public user-library-read user-read-recently-played streaming app-remote-control&response_type=code&redirect_uri=http://localhost:8080/responseFromSpotify&client_id=96faf0542a934748ab800dae8f474e70}" >
+                <div class="row" id="login-with-text">
+                    <span id="login-text">Login</span>
+                    <br>
+                    <span style="font-size: 22px">with</span>
+                </div>
+                <div class="row">
+                    <img id="login-img" class="row" th:src="@{/Spotify_Logo_RGB_White.png}"   alt="...">
+                </div>
+            </a>
+            <img id="background"  th:src="@{/Vector.svg}">
+        </div>
+    </th:block>
+
+    <th:block th:if="${session.user!=null}">
+        <p class="h2 text-center p-5" style="color:darkred; font-family: MuseoModerno">Active users: </p>
+        <div class="container pt-5 navDivs pb-5">
+            <div class="column mx-auto">
+                <div class="row mx-auto" id="artists">
+                    <ul th:each="user : ${session.users}" style="list-style: none; display: inline" class="mx-auto">
+                        <a th:href="'/' + ${user.displayName}">
+                            <li class="mx-auto"><img th:src="${user.imageUrl}" class="RoundedImage"></li>
+                        </a>
+                        <li style="font-family: MuseoModerno" class="mx-auto text-light text-center pt-3"><p th:text="${user.displayName}"></p></li>
+                        <li style="font-family: MuseoModerno" class="mx-auto text-light text-center pt-3"><p th:text="${user.country}"></p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
 </div>
 <footer th:replace="fragments/footer.html"/>
 </body>

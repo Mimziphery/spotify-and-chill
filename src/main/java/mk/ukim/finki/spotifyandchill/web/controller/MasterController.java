@@ -40,8 +40,25 @@ public class MasterController {
     AlbumService albumService;
 
     @GetMapping("/")
-    public String getWelcomePage(){
+    public String getWelcomePage(HttpSession session){
+        List<User> users = this.userService.listAll();
+        User user = (User) session.getAttribute("user");
+        if(!users.isEmpty() && user!=null)
+            session.setAttribute("users", users);
+
         return "login";
+    }
+    @RequestMapping(value = "/{username}")
+    public  String returnUserProfilePage(@PathVariable String username, HttpSession session){
+        Optional<User> selectedUser = this.userService.findByUsername(username);
+        User user = (User) session.getAttribute("user");
+        if(selectedUser.isPresent()){
+            if(selectedUser.get().getDisplayName().equals(user.getDisplayName()))
+                return "redirect:/profile";
+            session.setAttribute("selectedUser", selectedUser.get());
+            return "selectedProfile";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/aboutUs")

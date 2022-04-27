@@ -9,4 +9,5 @@ import java.util.*;
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
     //List<User> findAllByTopArtist(Artist artist);
+    Optional<User> findByDisplayName(String username);
 }

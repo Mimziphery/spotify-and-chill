@@ -32,10 +32,9 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public List<Artist> getTopArtists(String id) {
-        return userRepository.getById(id).getArtists();
+    public Optional<User> findByUsername(String username) {
+        return this.userRepository.findByDisplayName(username);
     }
-
 
 
 }

@@ -9,8 +9,7 @@ import java.util.*;
 
 public interface UserService {
     List<User> listAll();
-    //List<User> topArtist(Artist artist);
     void save(User user);
     Optional<User> getById(String id);
-    List<Artist> getTopArtists(String id);
+    Optional<User> findByUsername(String username);
 }

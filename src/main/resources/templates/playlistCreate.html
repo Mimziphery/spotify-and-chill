@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create your playlist!</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -10,22 +10,23 @@
 </head>
 <header th:replace="fragments/navbar.html"/>
 <body id="BasicBackground">
-<div class="container justify-content-center mx-auto" style="background-color: gray" >
-    <label for="searchSongField" style="font-family: MuseoModerno">Seach song</label>
+<div class="container justify-content-center mx-auto rounded mh-100 mt-5 pt-2" style="background-color: #363636" >
+    <label for="searchSongField" style="font-family: MuseoModerno; color: white">Seach song</label>
     <input type="text" id="searchSongField">
-    <button id="searchSong" onclick="searchSong()">Click me</button>
+    <button id="searchSong" class="btn btn-light justify-content-center btn-sm" style="font-family: MuseoModerno" onclick="searchSong()">Click me!
+    </button>
     <p hidden th:text="${session.token}" id="token"></p>
     <p hidden th:text="(${session.playlist} != null ? ${session.playlist.id} : '')" id="playlistId"></p>
     <div id="searchedSongs">
 
     </div>
-    <form method="post">
-        <div class="form-group">
-            <label for="playlistName" style="font-family: MuseoModerno">Playlist name:</label>
+    <form method="post" class="form-group mt-3">
+        <div class="form-group pt-3">
+            <label for="playlistName" style="font-family: MuseoModerno; color: white">Playlist name:</label>
             <input type="text" class="form-control" id="playlistName" required >
         </div>
-        <div class="form-group">
-            <label for="playlistDescription" style="font-family: MuseoModerno">Description: </label>
+        <div class="form-group pt-3">
+            <label for="playlistDescription" style="font-family: MuseoModerno; color: white">Description: </label>
             <input type="text" class="form-control" id="playlistDescription">
         </div>
 
@@ -33,8 +34,8 @@
         </div>
 
     </form>
-    <div class="container text-center">
-        <button class="btn btn-dark justify-content-center" onclick="submitPlaylist()" style="font-family: MuseoModerno">Create Playlist</button>
+    <div class="container text-center pt-3">
+        <button class="btn btn-info justify-content-center" onclick="submitPlaylist()" style="font-family: MuseoModerno">Create Playlist</button>
     </div>
 
 </div>
@@ -71,7 +72,7 @@
         for(i=0; responseBody.tracks.items.length; i++){
             var songId = responseBody.tracks.items[i].track.id;
 
-            songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
+            songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" class="btn btn-light btn-sm" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
         }
         //TRACKS tracks.items[i].track.id
         //response.description
@@ -101,7 +102,7 @@
         songsBox.innerHTML = "";
         for (i=0; i<songs.length; i++){
             var songId = songs[i].id;
-            songsBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe><input type="button" value="Add Song" id="${songId}" onclick="addSong(this.id)"></div>`;
+            songsBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe><input type="button" class="btn btn-light btn-sm" value="Add Song" id="${songId}" onclick="addSong(this.id)"></div>`;
         }
         console.log(responseBody);
     }
@@ -110,7 +111,7 @@
         var element = document.getElementById(songId);
         element.parentNode.parentNode.removeChild(element.parentNode);
         var songBox  = document.getElementById("selectedSongs");
-        songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
+        songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" class="btn btn-light btn-sm" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
     }
 
     function removeSong(songId) {
