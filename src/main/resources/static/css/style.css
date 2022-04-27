@@ -1,6 +1,6 @@
 @font-face {
     font-family: MuseoModerno;
-    src: url("MuseoModerno-VariableFont_wght.ttf");
+    src: url("../fonts/MuseoModerno-VariableFont_wght.ttf");
 }
 * {
     box-sizing: border-box;
