@@ -17,66 +17,50 @@
     <p class="h2 text-center p-5" style="color:darkred; font-family: MuseoModerno">Development</p>
 </header>
 
-<div class="overlay"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-9 mx-auto" style="padding-left: 0;padding-right: 0;">
-            <div class="row">
-                <div class="col-xl-4 mx-auto">
-                    <div class="container m-3">
-                        <img th:src="@{/Mimz1.jpeg}" class="RoundedImage">
-                        <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Mimoza</p>
-                        <nav class="nav justify-content-center" >
-                            <a class="nav-link">
-                                <i class="bi bi-facebook" style="color: #1cb398"></i>
-                            </a>
-                            <a class="nav-link">
-                                <i class="bi bi-spotify" style="color: #1cb398"></i>
-                            </a>
-                            <a class="nav-link">
-                                <i class="bi bi-instagram" style="color: #1cb398"></i>
-                            </a>
-                    </div>
-                </div>
-                <div class="col-xl-4 mx-auto">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="container m-3">
-                            <img th:src="@{/Marko1.png}" class="RoundedImage">
-                            <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Marko</p>
-                            <nav class="nav justify-content-center" >
-                                <a class="nav-link">
-                                    <i class="bi bi-facebook" style="color: #1cb398"></i>
-                                </a>
-                                <a class="nav-link">
-                                    <i class="bi bi-spotify" style="color: #1cb398"></i>
-                                </a>
-                                <a class="nav-link">
-                                    <i class="bi bi-instagram" style="color: #1cb398"></i>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 mx-auto">
-                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                        <div class="container m-3">
-                            <img th:src="@{/Jovana1.png}" class="RoundedImage">
-                            <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Jovana</p>
-                            <nav class="nav justify-content-center" >
-                                <a class="nav-link">
-                                    <i class="bi bi-facebook" style="color: #1cb398"></i>
-                                </a>
-                                <a class="nav-link">
-                                    <i class="bi bi-spotify" style="color: #1cb398"></i>
-                                </a>
-                                <a class="nav-link">
-                                    <i class="bi bi-instagram" style="color: #1cb398"></i>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="container pt-5 navDivs pb-5">
+    <div class="column mx-auto">
+        <div class="row mx-auto" id="artists">
+            <ul class="mx-auto"  style="list-style: none">
+                <li><img th:src="@{/Mimz1.jpeg}" class="RoundedImage"></li>
+                <li><p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398;">Mimoza</p></li>
+                <li><nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+                </li>
+            </ul>
+            <ul class="mx-auto"  style="list-style: none">
+                <img th:src="@{/Marko1.png}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398;">Marko</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+
+            </ul>
+            <ul class="mx-auto" style="list-style: none">
+                <img th:src="@{/Jovana1.png}" class="RoundedImage">
+                <p class="h3 mx-auto text-center" style="font-family: MuseoModerno; color: #1CB398">Jovana</p>
+                <nav class="nav justify-content-center" >
+                    <a class="nav-link">
+                        <i class="bi bi-facebook" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-spotify" style="color: #1cb398"></i>
+                    </a>
+                    <a class="nav-link">
+                        <i class="bi bi-instagram" style="color: #1cb398"></i>
+                    </a>
+                </nav>
+            </ul>
         </div>
     </div>
 </div>

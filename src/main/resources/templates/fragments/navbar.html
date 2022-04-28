@@ -11,7 +11,7 @@
         <span id="logo-text" class="navbar-brand mx-auto" style="font-size: 48px">Spotify & Chill</span>
       </a>
       <th:block th:if="${session.user!=null}">
-        <a id="logout" class="navbar nav me-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" th:href="@{logout}">Logout</a>
+        <a id="logout" class="navbar nav me-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno; position: absolute; right: 0;" th:href="@{logout}">Logout</a>
       </th:block>
     </div>
 

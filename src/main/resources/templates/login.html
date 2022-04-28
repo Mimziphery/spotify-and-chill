@@ -37,7 +37,7 @@
             <div class="column mx-auto">
                 <div class="row mx-auto" id="artists">
                     <ul th:each="user : ${session.users}" style="list-style: none; display: inline" class="mx-auto">
-                        <a th:href="'/' + ${user.displayName}">
+                        <a th:href="'profile/' + ${user.displayName}">
                             <li class="mx-auto"><img th:src="${user.imageUrl}" class="RoundedImage"></li>
                         </a>
                         <li style="font-family: MuseoModerno" class="mx-auto text-light text-center pt-3"><p th:text="${user.displayName}"></p></li>

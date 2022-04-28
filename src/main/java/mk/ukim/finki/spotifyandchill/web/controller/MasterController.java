@@ -48,7 +48,7 @@ public class MasterController {
 
         return "login";
     }
-    @RequestMapping(value = "/{username}")
+    @GetMapping("profile/{username}")
     public  String returnUserProfilePage(@PathVariable String username, HttpSession session){
         Optional<User> selectedUser = this.userService.findByUsername(username);
         User user = (User) session.getAttribute("user");

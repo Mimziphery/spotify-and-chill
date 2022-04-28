@@ -29,7 +29,12 @@ public class loginFilter implements Filter {
         System.out.println("path: "+ path );
 
         if (!"/".equals(path) &&
-                !"/css/style.css".equals(path) &&
+                !path.contains("css") &&
+                !path.endsWith("svg") &&
+                !path.contains("ttf") &&
+                !path.contains("jpeg") &&
+                !path.contains("jpg") &&
+                !path.contains("png") &&
                 user==null &&
                 !"/aboutUs".equals(path) &&
         !"/responseFromSpotify".equals(path)){

@@ -57,6 +57,9 @@
 
 </div>
 <div style="display: none" class="container navDivs" id="playlistContainer">
+    <div class="container text-center pb-5">
+        <a class="btn btn-dark justify-content-center" type="button" href="/createPlaylist" style="font-family: MuseoModerno">Create a new Playlist</a>
+    </div>
     <div class="container pt-5 text-center justify-content-center">
         <ul th:each = "playlist : ${session.user.playlists}" style="list-style: none; display: inline" class="mx-auto">
             <li class="pb-5">
@@ -71,9 +74,6 @@
                 </form>
             </li>
         </ul>
-        <div class="container text-center pb-5">
-            <a class="btn btn-dark justify-content-center" type="button" href="/createPlaylist" style="font-family: MuseoModerno">Create a new Playlist</a>
-        </div>
     </div>
 
 
