@@ -139,9 +139,11 @@ public class MasterController {
 
         JSONObject topAlbums = playerService.getAlbums(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
         ArrayList<LinkedHashMap> albumsList = (ArrayList<LinkedHashMap>) topAlbums.get("items");
+        boolean albumsHere = true;
         if (albumsList.size() == 0){
             //DISPLAY MESSAGE
-            return "redirect:/profile";
+
+           albumsHere = false;
         }
         List<Album> savedAlbums = new ArrayList<>();
         for (int i=0; i< albumsList.size(); i++){
@@ -181,17 +183,19 @@ public class MasterController {
 
         JSONObject topSong = playerService.getTopSong(spotifyUserAuthorizationCode.getTokenType() + " " + spotifyUserAuthorizationCode.getAccessToken());
         ArrayList<LinkedHashMap> topSongList = (ArrayList<LinkedHashMap>) topSong.get("items");
-        LinkedHashMap topTrack = topSongList.get(0);
-        String trackId = (String) topTrack.get("id");
-        Song song = new Song(trackId);
 
-        user.setTopSong(songService.save(song));
+        if(topSongList.size()!=0){
+            LinkedHashMap topTrack = topSongList.get(0);
+            String trackId = (String) topTrack.get("id");
+            Song song = new Song(trackId);
+            user.setTopSong(songService.save(song));
+        }
         user.setId(id);
         user.setDisplayName(displayName);
         user.setImageUrl(imageUrl);
         user.setSpotifyUrl(spotifyUrl);
         user.setArtists(savedArtists);
-        user.setAlbums(savedAlbums);
+        if(albumsHere) user.setAlbums(savedAlbums);
         this.userService.save(user);
 
         user = this.userService.getById(id).get();
