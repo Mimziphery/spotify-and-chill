@@ -58,7 +58,7 @@ public class MasterController {
             session.setAttribute("selectedUser", selectedUser.get());
             return "selectedProfile";
         }
-        return "redirect:/";
+        return "redirect:/error";
     }
 
     @GetMapping("/aboutUs")

@@ -6,13 +6,14 @@
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <nav id="navbar" class="navbar navbar-dark" style="background: #191414" >
     <div class="container-fluid" >
-      <a id="logo" class="navbar-brand mx-auto"  href="/">
+      <a id="logo" class="navbar-brand mx-auto" href="/">
         <img th:src="@{/logo-navbar.svg}" alt="" class="d-inline-block align-text-top">
-        <span class="navbar-brand mx-auto" style="font-size: 48px">Spotify & Chill</span>
+        <span id="logo-text" class="navbar-brand mx-auto" style="font-size: 48px">Spotify & Chill</span>
       </a>
       <th:block th:if="${session.user!=null}">
-        <a id="logout" class="navbar nav ms-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" th:href="@{logout}">Logout</a>
+        <a id="logout" class="navbar nav me-auto text-center pt-0 pb-0 text-light fs-3" style="font-family: MuseoModerno" th:href="@{logout}">Logout</a>
       </th:block>
     </div>
+
   </nav>
 </header>
