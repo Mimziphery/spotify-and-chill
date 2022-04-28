@@ -112,6 +112,8 @@
         element.parentNode.parentNode.removeChild(element.parentNode);
         var songBox  = document.getElementById("selectedSongs");
         songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" class="btn btn-light btn-sm" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
+
+        songBox.innerHTML += `<div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${songId}?utm_source=generator" width="150px" height="50px" frameBorder="0" allowfullscreen="" allowallowFullScreenpboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <input type="button" value="Remove Song" id="${songId}" onclick="removeSong(this.id)"></div>`;
     }
 
     function removeSong(songId) {
@@ -122,8 +124,22 @@
     function submitPlaylist() {
         console.log("in here");
         var requestBody = {};
+        if(!document.getElementById("playlistName").value){
+            alert("A playlist name is required");
+            return;
+        }
+        if(playlistId!== null && playlistId !== undefined && playlistId.length!==0){
+            if(document.getElementById("playlistDescription").value){
+                requestBody["description"] = document.getElementById("playlistDescription").value;
+            }
+        }
         requestBody["name"] = document.getElementById("playlistName").value;
-        requestBody["description"] = document.getElementById("playlistDescription").value;
+
+
+        if(document.getElementById("playlistDescription").value){
+            requestBody["description"] = document.getElementById("playlistDescription").value;
+        }
+
 
         requestBody["songIds"] = [];
         var songs = document.getElementById("selectedSongs").children;
